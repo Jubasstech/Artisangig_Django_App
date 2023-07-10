@@ -1,0 +1,42 @@
+<!-- payment.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Payment Details</h1>
+  
+  <h3>Amount: NGN {{ amount }}</h3>
+  <h3>Customer Name: {{ customer_name }}</h3>
+  
+  <form method="POST" action="{% url 'make_payment' %}">
+    {% csrf_token %}
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <button type="button" onclick="payWithPaystack()">Pay Now</button>
+  </form>
+
+  <script>
+    function payWithPaystack() {
+      var amount = "{{ amount }}";
+      var customer_email = "{{ customer_email }}";
+      var reference = "{{ reference }}";
+
+      var handler = PaystackPop.setup({
+        key: 'YOUR_PUBLIC_KEY',
+        email: customer_email,
+        amount: amount * 100,
+        currency: "NGN",
+        ref: reference,
+        callback: function (response) {
+          // Handle the payment success and redirect to a success page
+          window.location.href = "{% url 'payment_success' %}";
+        },
+        onClose: function () {
+          // Handle the payment cancellation or failure
+          window.location.href = "{% url 'payment_cancel' %}";
+        },
+      });
+      handler.openIframe();
+    }
+  </script>
+{% endblock %}
+

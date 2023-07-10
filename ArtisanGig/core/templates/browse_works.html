@@ -1,0 +1,21 @@
+<!-- browse_works.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Browse Works</h1>
+  
+  <ul>
+    {% for work in works %}
+      <li>
+        <img src="{{ work.image.url }}" alt="{{ work.category }}">
+        <p>Category: {{ work.category }}</p>
+        <p>Artisan: {{ work.artisan.username }}</p>
+        <button onclick="window.open('https://wa.me/{{ work.artisan.phone_number }}', '_blank')">Chat on Whatsapp</button>
+      </li>
+    {% empty %}
+      <p>No works available.</p>
+    {% endfor %}
+  </ul>
+{% endblock %}
+

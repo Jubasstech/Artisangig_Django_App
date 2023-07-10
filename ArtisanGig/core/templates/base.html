@@ -1,0 +1,70 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ArtisanGig</title>
+  <!-- Add your CSS and JavaScript files here -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <!-- Add your navigation links here -->
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'services' %}">Services</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+        <!-- Add more links as needed -->
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    {% block content %}
+    <!-- This is where the specific content of each page will be inserted -->
+	    <h1>Payment Details</h1>
+  
+  <h3>Amount: NGN {{ amount }}</h3>
+  <h3>Customer Name: {{ customer_name }}</h3>
+  
+  <form method="POST" action="{% url 'make_payment' %}">
+    {% csrf_token %}
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <button type="button" onclick="payWithPaystack()">Pay Now</button>
+  </form>
+
+  <script>
+    function payWithPaystack() {
+      var amount = "{{ amount }}";
+      var customer_email = "{{ customer_email }}";
+      var reference = "{{ reference }}";
+var handler = PaystackPop.setup({
+        key: 'YOUR_PUBLIC_KEY',
+        email: customer_email,
+        amount: amount * 100,
+        currency: "NGN",
+        ref: reference,
+        callback: function (response) {
+          // Handle the payment success and redirect to a success page
+          window.location.href = "{% url 'payment_success' %}";
+        },
+        onClose: function () {
+          // Handle the payment cancellation or failure
+          window.location.href = "{% url 'payment_cancel' %}";
+        },
+      });
+      handler.openIframe();
+    }
+  </script>
+    {% endblock %}
+  </main>
+  
+  <footer>
+    <!-- Add your footer content here -->
+    <p>&copy; 2023 ArtisanGig. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+

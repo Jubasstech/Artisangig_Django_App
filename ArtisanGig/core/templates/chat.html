@@ -1,0 +1,28 @@
+<!-- chat.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Chat</h1>
+  
+  <h2>Chat with {{ recipient.username }}</h2>
+  
+  <div id="chat-messages">
+    {% for message in messages %}
+      <p>{{ message.sender.username }}: {{ message.content }}</p>
+    {% endfor %}
+  </div>
+  
+  <form id="chat-form" method="post">
+    {% csrf_token %}
+    <input type="text" id="message-input" name="message" autocomplete="off">
+    <button type="submit">Send</button>
+  </form>
+  
+  <script>
+    // Scroll to the latest message
+    var chatMessages = document.getElementById('chat-messages');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  </script>
+{% endblock %}
+

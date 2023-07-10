@@ -1,0 +1,45 @@
+<!-- artisan_dashboard.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Artisan Dashboard</h1>
+  
+  <h2>Welcome, {{ artisan.username }}</h2>
+  
+  <h3>Upload Your Works</h3>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+      <label for="category">Category:</label>
+      <select id="category" name="category">
+        <option value="painting">Painting</option>
+        <option value="sculpture">Sculpture</option>
+        <option value="woodwork">Woodwork</option>
+       < option value="mechanic">Mechanic</option>
+       < option value="Electrician">Electrician</option>
+       < option value="Computer Repairs">Computer repairs</option>
+      < option value="hairstylist">hairstylist</option>
+        <!-- Add more options as needed -->
+      </select>
+    </div>
+    <div>
+      <label for="image">Image:</label>
+      <input type="file" id="image" name="image">
+    </div>
+    <button type="submit">Upload</button>
+  </form>
+  
+  <h3>Your Works</h3>
+  <ul>
+    {% for work in artisan.works %}
+      <li>
+        <img src="{{ work.image.url }}" alt="{{ work.category }}">
+        <p>Category: {{ work.category }}</p>
+      </li>
+    {% empty %}
+      <p>No works uploaded yet.</p>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
