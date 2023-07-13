@@ -40,13 +40,12 @@ python -m venv env
 source env/bin/activate
 
 
-Install the required dependencies:
+## Install the required dependencies:
 
-pip install -r requirements.txt
+## pip install -r requirements.txt
 
 Set up the database:
-bash
-Copy code
+ 
 python manage.py migrate
 Start the development server:
 
@@ -54,7 +53,7 @@ Start the development server:
 python manage.py runserver
 Access the web app locally at http://localhost:8000.
 
-Contributing
+## Contributing
 We welcome contributions to enhance the Artisangig Web App. To contribute, please follow these steps:
 Fork the repository.
 Create a new branch
@@ -66,11 +65,11 @@ git push origin feature/your-feature-name
 Open a pull request, describing the changes you made.
 Please ensure that your contributions adhere to the coding conventions and best practices followed in the project.
 
-License
+## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
-Author
+## Author
 Jerome Udoh
 
-Contact
+## Contact
 For any inquiries or support, please contact the project team at admin@jubass.com.ng
