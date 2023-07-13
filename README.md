@@ -29,7 +29,7 @@ The Artisangig Web App is a platform that connects customers with artisans, allo
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/Artisangig.git
+   git clone https://github.com/Jubasstech/Artisangig.git
 
 Navigate to the project directory:
 cd Artisangig
@@ -49,10 +49,11 @@ bash
 Copy code
 python manage.py migrate
 Start the development server:
-bash
-Copy code
+
+
 python manage.py runserver
 Access the web app locally at http://localhost:8000.
+
 Contributing
 We welcome contributions to enhance the Artisangig Web App. To contribute, please follow these steps:
 Fork the repository.
@@ -64,8 +65,10 @@ Push the changes to your forked repositoryas
 git push origin feature/your-feature-name
 Open a pull request, describing the changes you made.
 Please ensure that your contributions adhere to the coding conventions and best practices followed in the project.
+
 License
 This project is licensed under the MIT License. See the LICENSE file for more details.
+
 Author
 Jerome Udoh
 
